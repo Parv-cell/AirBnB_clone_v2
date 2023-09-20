@@ -30,7 +30,9 @@ touch /data/web_static/releases/test/index.html
 echo "<html>
         <head>
         </head>
-        <body>Welcome to the home page</body>
+        <body>
+		Welcome to the home page
+	</body>
 </html>" > /data/web_static/releases/test/index.html
 
 
@@ -47,7 +49,7 @@ ln -s "$target_path" "$link_path"
 chown -R ubuntu:ubuntu /data/
 
 # Check if the /hbnb_static exists in the configuration file
-if ! grep -q "location /hbnb_static {" /etc/nginx/sites-available/default; then
+if ! grep -q "location localhost/hbnb_static {" /etc/nginx/sites-available/default; then
 	# Add /hbnb_static vlock if it does not exist
 	sed -i "/error_page 404 \/404.html;/a \\\n\tlocation /hbnb_static { \
         	\n\t\talias /data/web_static/current/; \
